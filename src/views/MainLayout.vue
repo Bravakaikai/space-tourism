@@ -5,7 +5,8 @@
     <slot name="logo" />
     <h1 class="text-center text-5xl mt-20 mb-6">Space Tourism</h1>
     <slot name="toolBar" />
-    <ul class="flex w-full cursor-pointer">
+    <nav-bar :tab-list="tabList" @go-page="goPage" />
+    <!-- <ul class="flex w-full cursor-pointer">
       <li
         v-for="item in tabList"
         :id="item.route"
@@ -20,7 +21,7 @@
         <i :class="`fa-solid fa-${item.icon}`"></i>
         <p class="ml-2">{{ item.name }}</p>
       </li>
-    </ul>
+    </ul> -->
     <div class="view mx-auto py-6 max-w-5xl flex flex-col justify-center">
       <h2 v-show="currTab !== 'Home'" class="text-center mb-9 text-5xl">
         {{ currTab }}
@@ -31,17 +32,21 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
+import NavBar from "@/components/NavBar.vue";
 export default {
-  name: "HomeLayout",
+  name: "MainLayout",
+  components: {
+    "nav-bar": NavBar,
+  },
   computed: {
     ...mapState({
       mode: (state) => state.darkMode,
+      currTab: (state) => state.currTab,
     }),
   },
   data() {
     return {
-      currTab: "Home",
       tabList: [
         {
           icon: "house",
@@ -53,7 +58,7 @@ export default {
           icon: "user-astronaut",
           name: "About Us",
           route: "aboutUs",
-          color: "blue",
+          color: "#0275ff",
         },
         {
           icon: "earth-asia",
@@ -71,9 +76,10 @@ export default {
     };
   },
   methods: {
-    goPage(name, route) {
-      this.currTab = name;
-      this.$router.push({ name: route });
+    ...mapMutations(["setCurrTab"]),
+    goPage(e) {
+      this.setCurrTab(e.name);
+      this.$router.push({ name: e.route });
     },
   },
 };
@@ -82,14 +88,6 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Teko&display=swap");
 .layout {
-  .tab:hover {
-    background-color: rgba(100, 100, 100, 0.2);
-    color: var(--font-color);
-  }
-  .tab.active {
-    color: var(--font-color);
-    border-bottom: 2px solid var(--font-color);
-  }
   .view {
     min-height: calc(100vh - 368px);
   }

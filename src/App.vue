@@ -3,7 +3,7 @@
     class="app bg-themeBackground bg-cover bg-repeat h-full min-h-screen"
     :class="mode === 'dark' ? 'theme-dark' : 'theme-light'"
   >
-    <home-layout>
+    <main-layout>
       <template v-slot:logo>
         <img
           class="logo absolute"
@@ -14,18 +14,18 @@
       <template v-slot:toolBar>
         <tool-bar />
       </template>
-    </home-layout>
+    </main-layout>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
-import HomeLayout from "@/views/HomeLayout.vue";
+import MainLayout from "@/views/MainLayout.vue";
 import ToolBar from "@/components/ToolBar.vue";
 export default {
   name: "App",
   components: {
-    "home-layout": HomeLayout,
+    "main-layout": MainLayout,
     "tool-bar": ToolBar,
   },
   data() {

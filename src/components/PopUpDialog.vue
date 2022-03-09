@@ -1,23 +1,32 @@
 <template>
   <teleport to="body">
-    <div
-      v-if="dialog"
-      class="mask absolute top-0 w-full h-screen flex items-center"
-    >
-      <div class="relative w-1/4 bg-white mx-auto rounded-md px-4 py-3">
-        <header class="mb-3">
-          <h2 class="text-center text-3xl">{{ title }}</h2>
-          <button
-            type="button"
-            class="absolute top-4 right-4 text-2xl ml-4"
-            @click="dialog = false"
-          >
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </header>
-        <slot />
+    <transition mode="out-in">
+      <div
+        v-if="dialog"
+        class="mask fixed top-0 w-full h-screen flex items-center"
+        @click.self="dialog = false"
+      >
+        <div
+          class="w-1/3 bg-white mx-auto rounded-md animate__animated animate__zoomIn"
+        >
+          <header class="relative">
+            <h2 class="py-2 text-center text-3xl border-b">
+              {{ title }}
+            </h2>
+            <button
+              type="button"
+              class="absolute top-0 bottom-0 right-4 text-2xl ml-4"
+              @click="dialog = false"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </header>
+          <div class="p-4">
+            <slot />
+          </div>
+        </div>
       </div>
-    </div>
+    </transition>
   </teleport>
 </template>
 
