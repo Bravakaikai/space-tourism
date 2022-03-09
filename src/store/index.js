@@ -1,9 +1,16 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {},
+  state: {
+    darkMode: "light",
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    setDarkMode(state, payload) {
+      state.darkMode = payload;
+      localStorage.setItem("darkMode", payload);
+    },
+  },
   actions: {},
   modules: {},
 });

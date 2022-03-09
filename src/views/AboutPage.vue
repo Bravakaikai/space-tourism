@@ -1,13 +1,11 @@
 <template>
-  <v-container no-gutters>
-    <div class="about d-flex" v-for="(item, index) in contentList" :key="index">
-      <img class="mx-auto w-1/2" :src="item.imgUrl" :alt="item.title" />
-      <div class="d-flex flex-col justify-center px-8">
-        <h3 class="text-center text-3xl mb-3">{{ item.title }}</h3>
-        <p class="text-base">{{ item.content }}</p>
-      </div>
+  <div class="about flex" v-for="(item, index) in contentList" :key="index">
+    <img class="mx-auto w-1/2" :src="item.imgUrl" :alt="item.title" />
+    <div class="flex flex-col justify-center px-8">
+      <h3 class="text-center text-3xl mb-3">{{ item.title }}</h3>
+      <p class="text-base">{{ item.content }}</p>
     </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
