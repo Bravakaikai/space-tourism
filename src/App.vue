@@ -1,30 +1,62 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <v-app
+    class="bg bg-themeBackground"
+    :class="currMode ? 'theme-dark' : 'theme-light'"
+  >
+    <img class="logo" :src="require('@/assets/image/logo.jpg')" alt="logo" />
+    <home-layout />
+    <v-switch
+      v-model="currMode"
+      label="Dark Mode"
+      class="ml-3 text-white"
+      color="white"
+      hide-details
+    />
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import HomeLayout from "@/views/HomeLayout.vue";
+export default {
+  name: "App",
+  components: {
+    "home-layout": HomeLayout,
+  },
+  data() {
+    return {
+      darkMode: false,
+    };
+  },
+  computed: {
+    currMode: {
+      get() {
+        return this.darkMode;
+      },
+      set(val) {
+        this.darkMode = val;
+        // eslint-disable-next-line no-debugger
+        debugger;
+        localStorage.setItem("darkMode", val);
+      },
+    },
+  },
+  created() {
+    this.darkMode = localStorage.darkMode === "true" || false;
+  },
+};
+</script>
 
-nav {
-  padding: 30px;
+<style lang="scss" scoped>
+.bg {
+  background-image: url("@/assets/image/bg.png");
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.logo {
+  position: absolute;
+  z-index: 3;
+  border-radius: 50%;
+  width: 150px;
+  left: 50%;
+  transform: translate(-50%, 25px);
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
 }
 </style>

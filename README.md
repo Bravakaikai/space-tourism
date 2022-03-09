@@ -1,4 +1,5 @@
-# e-commerce
+# Tailwind Training with Vue3
+# Space Tourism
 
 ## Project setup
 ```
