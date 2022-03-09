@@ -34,8 +34,6 @@ export default {
       },
       set(val) {
         this.darkMode = val;
-        // eslint-disable-next-line no-debugger
-        debugger;
         localStorage.setItem("darkMode", val);
       },
     },

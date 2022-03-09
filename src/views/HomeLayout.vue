@@ -65,7 +65,6 @@ export default {
       },
       set(val) {
         this.currTab = val;
-        localStorage.setItem("currTab", val);
       },
     },
     getFocusColor() {
@@ -91,9 +90,6 @@ export default {
           this.focusColor = "";
       }
     },
-  },
-  created() {
-    this.currTab = localStorage.currTab || "home";
   },
 };
 </script>
