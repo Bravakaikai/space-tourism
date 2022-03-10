@@ -5,9 +5,11 @@
 .theme-light {
   --background: #f8f8f8;
   --text: #313131;
+  --sub-background: white,
 }
 
 .theme-dark {
   --background: #313131;
   --text: #f8f8f8;
+  --sub-background: rgb(100, 100, 100);
 }

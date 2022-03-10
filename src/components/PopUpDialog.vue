@@ -3,8 +3,8 @@
     <transition mode="out-in">
       <div
         v-if="dialog"
-        class="mask fixed top-0 w-full h-screen flex items-center"
-        @click.self="dialog = false"
+        class="bg-mask fixed top-0 w-full h-screen flex items-center"
+        @click.self="close"
       >
         <div
           class="w-1/3 bg-white mx-auto rounded-md animate__animated animate__zoomIn"
@@ -15,8 +15,8 @@
             </h2>
             <button
               type="button"
-              class="absolute top-0 bottom-0 right-4 text-2xl ml-4"
-              @click="dialog = false"
+              class="absolute top-0 bottom-0 right-4 text-2xl ml-4 hover:bg-transparent"
+              @click="close"
             >
               <i class="fa-solid fa-xmark"></i>
             </button>
@@ -33,6 +33,7 @@
 <script>
 export default {
   name: "PopUpDialog",
+  emits: ["close"],
   props: {
     title: {
       type: String,
@@ -48,12 +49,10 @@ export default {
     openDialog() {
       this.dialog = !this.dialog;
     },
+    close() {
+      this.dialog = false;
+      this.$emit("close");
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.mask {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-</style>

@@ -1,0 +1,46 @@
+.form {
+  label.ant-form-item-required {
+    font-size: 20px;
+    color: var(--text);
+  }
+  input[type="text"],
+  input[type="password"],
+  textarea.ant-input {
+    font-size: 18px;
+  }
+  .ant-input-affix-wrapper,
+  .ant-input {
+    background-color: var(--sub-background) !important;
+  }
+  button {
+    border: 2px solid var(--text);
+    color: var(--text);
+    background-color: transparent;
+    font-size: 18px;
+    line-height: 18px;
+    box-shadow: none;
+  }
+  button:hover,
+  button:focus {
+    background-color: rgba(100, 100, 100, 0.2);
+    color: #40a9ff;
+    border-color: #40a9ff;
+  }
+}
+
+button:hover,
+button:focus {
+  background-color: rgba(100, 100, 100, 0.2);
+  color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+input[type="radio"] {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+input[type="radio"] + label {
+  margin-left: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}

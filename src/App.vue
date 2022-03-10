@@ -1,12 +1,12 @@
 <template>
   <div
-    class="app bg-themeBackground bg-cover bg-repeat h-full min-h-screen"
+    class="app bg-themeBg bg-cover bg-repeat h-full min-h-screen"
     :class="mode === 'dark' ? 'theme-dark' : 'theme-light'"
   >
     <main-layout>
       <template v-slot:logo>
         <img
-          class="logo absolute"
+          class="logo absolute rounded-full"
           :src="require('@/assets/image/logo.jpg')"
           alt="logo"
         />
@@ -28,9 +28,6 @@ export default {
     "main-layout": MainLayout,
     "tool-bar": ToolBar,
   },
-  data() {
-    return {};
-  },
   computed: {
     ...mapState({
       mode: (state) => state.darkMode,
@@ -45,22 +42,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Teko&display=swap");
+@import "@/assets/css/main.scss";
 .app {
   padding-top: 100px;
   background-image: url("@/assets/image/bg.png");
-}
-.logo {
-  border-radius: 50%;
-  width: 150px;
-  top: -100px;
-  left: 50%;
-  transform: translate(-50%, 25px);
-  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
-}
-::v-deep(button:hover) {
-  background-color: rgba(100, 100, 100, 0.2);
-  color: #f87c68;
-  border-color: #f87c68;
+  .logo {
+    width: 150px;
+    top: -100px;
+    left: 50%;
+    transform: translate(-50%, 25px);
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
+  }
 }
 </style>

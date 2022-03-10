@@ -1,28 +1,33 @@
 <template>
   <div class="grid grid-cols-3 md:grid-cols-4">
     <div
-      class="planet p-6 text-center cursor-pointer"
+      class="planet hover:bg-hover p-6 text-center cursor-pointer"
       v-for="item in planetList"
       :key="item.id"
       @click="$router.push({ path: '/planets/' + item.id })"
     >
       <img
-        class="mb-3 shadow-none"
+        class="mb-3 shadow-none scale-1 rounded-full transition delay-30 ease-in-out"
         :src="require(`@/assets/image/planet/${item.img}`)"
         :alt="item.name"
       />
-      <h3 class="text-xl">{{ item.name }}</h3>
+      <h3 class="text-xl text-themeText">{{ item.name }}</h3>
       <p>$ {{ item.price.toLocaleString() }}</p>
     </div>
   </div>
-  <pop-up-dialog ref="popUpDialog" :title="currPlanet?.name">
+  <pop-up-dialog
+    ref="popUpDialog"
+    :title="currPlanet?.name"
+    @close="closeDetail"
+  >
     <template v-slot>
-      <planet-detail ref="detail" />
+      <planet-detail />
     </template>
   </pop-up-dialog>
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import PopUpDialog from "@/components/PopUpDialog.vue";
 import PlanetDetail from "@/views/dialog/PlanetDetail.vue";
 export default {
@@ -31,9 +36,17 @@ export default {
     "pop-up-dialog": PopUpDialog,
     "planet-detail": PlanetDetail,
   },
+  computed: {
+    ...mapState({
+      currPlanet: (state) => state.currPlanet,
+    }),
+    routeParam() {
+      return this.$route.params.id;
+    },
+  },
+
   data() {
     return {
-      currPlanet: null,
       planetList: [
         {
           id: 1,
@@ -110,34 +123,30 @@ export default {
       ],
     };
   },
-  updated() {
-    const id = this.$route.params.id;
-    if (id) this.openDetail(parseInt(id));
+  watch: {
+    routeParam(val) {
+      if (val) this.openDetail(parseInt(val));
+    },
+    mounted() {
+      const id = this.$route.params.id;
+      if (id) this.openDetail(parseInt(id));
+    },
   },
   methods: {
+    ...mapMutations(["setCurrPlanet"]),
     openDetail(id) {
       const planet = this.planetList.find((item) => item.id === id);
-      this.currPlanet = planet;
-      this.$nextTick(() => {
-        this.$refs.popUpDialog.openDialog();
-        this.$refs.detail.setPlanet(planet);
-      });
+      this.$refs.popUpDialog.openDialog();
+      this.setCurrPlanet(planet);
+    },
+    closeDetail() {
+      this.$router.push({ path: "/planets" });
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-img {
-  border-radius: 50%;
-  transition: 0.3s ease-in-out;
-}
-.planet:hover {
-  background-color: rgba(100, 100, 100, 0.2);
-  img {
-    transform: scale(1);
-  }
-}
 .planet:hover img {
   transform: scale(1.08);
 }

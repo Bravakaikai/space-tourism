@@ -52,15 +52,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-input[type="radio"] {
-  transform: scale(1.5);
-  cursor: pointer;
-}
-input[type="radio"] + label {
-  margin-left: 10px;
-  font-size: 24px;
-  cursor: pointer;
-}
-</style>

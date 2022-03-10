@@ -5,26 +5,26 @@
       :src="require(`@/assets/image/planet/${planet?.img}`)"
       :alt="planet?.name"
     />
-    <h3 class="text-xl text-center mt-2">{{ planet?.name }}</h3>
-    <p class="text-center mb-2">$ {{ planet?.price.toLocaleString() }}</p>
-    <p>{{ planet?.content }}</p>
+    <p class="text-center text-xl mt-2">
+      $ {{ planet?.price.toLocaleString() }}
+    </p>
+    <p class="mt-2">{{ planet?.content }}</p>
+    <base-button :title="'Buy Now'" class="block mx-auto mt-2" />
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+import BaseButton from "@/components/BaseButton.vue";
 export default {
   name: "PlanetDetail",
-  data() {
-    return {
-      planet: null,
-    };
+  components: {
+    "base-button": BaseButton,
   },
-  methods: {
-    setPlanet(val) {
-      this.planet = val;
-    },
+  computed: {
+    ...mapState({
+      planet: (state) => state.currPlanet,
+    }),
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

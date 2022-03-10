@@ -4,6 +4,8 @@ export default createStore({
   state: {
     darkMode: "light",
     currTab: "Home",
+    currPlanet: null,
+    userName: null,
   },
   getters: {},
   mutations: {
@@ -13,6 +15,12 @@ export default createStore({
     },
     setCurrTab(state, payload) {
       state.currTab = payload;
+    },
+    setCurrPlanet(state, payload) {
+      state.currPlanet = payload;
+    },
+    setUserName(state, payload) {
+      state.userName = payload;
     },
   },
   actions: {},

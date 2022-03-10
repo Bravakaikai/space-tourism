@@ -1,29 +1,18 @@
 <template>
   <div
-    class="layout relative mx-auto w-11/12 bg-themeBackground text-themeText border-4 border-double border-themeText rounded-xl"
+    class="relative mx-auto w-11/12 bg-themeBg text-themeText border-4 border-double border-themeText rounded-xl"
   >
     <slot name="logo" />
-    <h1 class="text-center text-5xl mt-20 mb-6">Space Tourism</h1>
+    <h1 class="text-center text-5xl mt-20 mb-6 text-themeText">
+      Space Tourism
+    </h1>
     <slot name="toolBar" />
     <nav-bar :tab-list="tabList" @go-page="goPage" />
-    <!-- <ul class="flex w-full cursor-pointer">
-      <li
-        v-for="item in tabList"
-        :id="item.route"
-        :key="item.route"
-        :value="item.route"
-        :class="`tab w-1/4 flex justify-center items-center p-4 text-xl border-2 border-transparent hover:bg-hoverColor ${
-          currTab === item.name ? 'active' : ''
-        }`"
-        :style="{ '--font-color': item.color }"
-        @click="goPage(item.name, item.route)"
-      >
-        <i :class="`fa-solid fa-${item.icon}`"></i>
-        <p class="ml-2">{{ item.name }}</p>
-      </li>
-    </ul> -->
     <div class="view mx-auto py-6 max-w-5xl flex flex-col justify-center">
-      <h2 v-show="currTab !== 'Home'" class="text-center mb-9 text-5xl">
+      <h2
+        v-show="currTab !== 'Home'"
+        class="text-center mb-9 text-5xl text-themeText"
+      >
         {{ currTab }}
       </h2>
       <router-view />
@@ -44,6 +33,9 @@ export default {
       mode: (state) => state.darkMode,
       currTab: (state) => state.currTab,
     }),
+    routePath() {
+      return this.$route.path;
+    },
   },
   data() {
     return {
@@ -58,7 +50,7 @@ export default {
           icon: "user-astronaut",
           name: "About Us",
           route: "aboutUs",
-          color: "#0275ff",
+          color: "#40a9ff",
         },
         {
           icon: "earth-asia",
@@ -75,6 +67,16 @@ export default {
       ],
     };
   },
+  watch: {
+    routePath(val) {
+      if (val) {
+        const tabName = this.tabList.find(
+          (item) => item.route === this.$route.name
+        )?.name;
+        this.setCurrTab(tabName);
+      }
+    },
+  },
   methods: {
     ...mapMutations(["setCurrTab"]),
     goPage(e) {
@@ -86,10 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Teko&display=swap");
-.layout {
-  .view {
-    min-height: calc(100vh - 368px);
-  }
+.view {
+  min-height: calc(100vh - 368px);
 }
 </style>
