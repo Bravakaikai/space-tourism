@@ -6,14 +6,14 @@
         :id="item.route"
         :key="item.route"
         :value="item.route"
-        :class="`tab w-1/4 flex justify-center items-center p-4 text-xl border-2 border-transparent hover:bg-hover ${
+        :class="`tab w-1/4 p-2 laptop:py-4 tablet:text-xl border-2 border-transparent flex justify-center items-center flex-col laptop:flex-row hover:bg-hover ${
           currTab === item.name ? 'active' : ''
         }`"
         :style="{ '--font-color': item.color }"
         @click="$emit('goPage', { name: item.name, route: item.route })"
       >
         <i :class="`fa-solid fa-${item.icon}`"></i>
-        <p class="ml-2 mb-0">{{ item.name }}</p>
+        <p class="laptop:ml-2 mb-0">{{ item.name }}</p>
       </li>
     </ul>
   </div>

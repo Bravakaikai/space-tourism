@@ -11,7 +11,7 @@
       />
       <label for="light">Light</label>
     </div>
-    <div class="ml-5">
+    <div class="ml-2 laptop:ml-4">
       <input
         type="radio"
         v-model="darkMode"

@@ -31,7 +31,12 @@
         />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" html-type="submit" class="w-full mt-4">
+        <a-button
+          type="primary"
+          html-type="submit"
+          class="w-full mt-4"
+          size="large"
+        >
           Submit
         </a-button>
       </a-form-item>

@@ -13,7 +13,7 @@
         :rules="[{ required: true, message: 'Please input your name!' }]"
       >
         <a-input
-          v-model:value="form.name"
+          v-model:value="formName"
           placeholder="Please input your name..."
           allow-clear
         />
@@ -28,12 +28,13 @@
             type: 'email',
             message: form.email
               ? 'The input is not valid E-mail!'
-              : 'Please input your E-mail!',
+              : 'Please input your e-mail!',
           },
         ]"
       >
         <a-input
           v-model:value="form.email"
+          type="email"
           placeholder="Please input your email..."
           allow-clear
         />
@@ -53,7 +54,12 @@
         />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" html-type="submit" class="w-full mt-4">
+        <a-button
+          type="primary"
+          html-type="submit"
+          class="w-full mt-4"
+          size="large"
+        >
           Submit
         </a-button>
       </a-form-item>
@@ -62,6 +68,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "ContactPage",
   data() {
@@ -72,6 +79,20 @@ export default {
         message: null,
       },
     };
+  },
+  computed: {
+    ...mapState({
+      userName: (state) => state.userName,
+    }),
+    formName: {
+      get() {
+        if (!this.form.name && this.userName) return this.userName;
+        return this.form.name;
+      },
+      set(val) {
+        this.form.name = val;
+      },
+    },
   },
   methods: {
     submit() {

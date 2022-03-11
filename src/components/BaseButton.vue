@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="border-2 border-solid border-themeText rounded px-4 py-1 text-2xl"
+    class="border-2 border-solid border-themeText rounded text-xl tablet:text-2xl"
   >
     {{ title }}
   </button>

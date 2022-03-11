@@ -1,21 +1,32 @@
 <template>
-  <div class="flex items-center absolute top-5 right-10">
-    <div v-if="userName" class="flex items-center">
-      <p class="text-2xl mb-0 mr-4">Hello, {{ userName }}!</p>
-      <base-button :title="'Log Out'" @click="setUserName(null)" />
+  <div class="absolute top-5 right-4 tablet:top-8 tablet:right-8">
+    <p v-if="userName" class="text-2xl tablet:text-3xl text-right mb-0">
+      Hello, {{ userName }}!
+    </p>
+    <div class="flex justify-end">
+      <base-button
+        v-if="!userName"
+        class="px-2 tablet:px-4 tablet:py-1"
+        title="Login"
+        @click="openDialog('login-page', 'Login')"
+      />
+      <a-tooltip v-else placement="bottom">
+        <template v-slot:title> Log Out</template>
+        <button class="hover:bg-transparent" @click="setUserName(null)">
+          <i class="fa-solid fa-right-to-bracket text-2xl tablet:text-3xl"></i>
+        </button>
+      </a-tooltip>
+      <a-tooltip placement="bottom">
+        <template v-slot:title>Setting</template>
+        <button
+          type="button"
+          class="ml-3 tablet:ml-4 hover:bg-transparent"
+          @click="openDialog('set-appearance', 'Appearance')"
+        >
+          <i class="fa-solid fa-gear text-2xl tablet:text-3xl"></i>
+        </button>
+      </a-tooltip>
     </div>
-    <base-button
-      v-else
-      :title="'Login'"
-      @click="openDialog('login-page', 'Login')"
-    />
-    <button
-      type="button"
-      class="text-3xl ml-4 hover:bg-transparent"
-      @click="openDialog('set-appearance', 'Appearance')"
-    >
-      <i class="fa-solid fa-gear text-3xl"></i>
-    </button>
   </div>
   <pop-up-dialog ref="popUpDialog" :title="dialog.title">
     <template v-slot>

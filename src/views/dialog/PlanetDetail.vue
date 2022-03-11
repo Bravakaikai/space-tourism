@@ -5,11 +5,15 @@
       :src="require(`@/assets/image/planet/${planet?.img}`)"
       :alt="planet?.name"
     />
-    <p class="text-center text-xl mt-2">
+    <p class="text-center text-xl my-2">
       $ {{ planet?.price.toLocaleString() }}
     </p>
-    <p class="mt-2">{{ planet?.content }}</p>
-    <base-button :title="'Buy Now'" class="block mx-auto mt-2" />
+    <p>{{ planet?.content }}</p>
+    <base-button
+      :title="'Buy Now'"
+      class="block mx-auto mt-2 px-4 py-1"
+      @click="checkValid"
+    />
   </div>
 </template>
 
@@ -24,7 +28,17 @@ export default {
   computed: {
     ...mapState({
       planet: (state) => state.currPlanet,
+      userName: (state) => state.userName,
     }),
+  },
+  methods: {
+    checkValid() {
+      if (!this.userName) {
+        alert("Please login and try again!");
+        this.$emit("close");
+        this.$router.push({ path: "/login" });
+      }
+    },
   },
 };
 </script>

@@ -16,6 +16,7 @@ const routes = [
   {
     path: "/planets/:id?",
     name: "planets",
+    alias: "/login",
     component: () =>
       import(/* webpackChunkName: "planets" */ "../views/PlanetPage.vue"),
   },
@@ -24,6 +25,12 @@ const routes = [
     name: "contactUs",
     component: () =>
       import(/* webpackChunkName: "contactUs" */ "../views/ContactPage.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notFound",
+    component: () =>
+      import(/* webpackChunkName: "notFound" */ "../views/NotFound.vue"),
   },
 ];
 

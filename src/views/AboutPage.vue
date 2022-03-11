@@ -1,12 +1,16 @@
 <template>
   <div
-    class="about flex px-6"
+    class="about laptop:flex px-6"
     v-for="(item, index) in contentList"
     :key="index"
   >
-    <img class="mx-auto w-1/2" :src="item.imgUrl" :alt="item.title" />
-    <div class="flex flex-col justify-center px-8">
-      <h3 class="text-center text-3xl mb-3 text-themeText">{{ item.title }}</h3>
+    <img class="mx-auto laptop:w-1/2" :src="item.imgUrl" :alt="item.title" />
+    <div class="flex flex-col justify-center px-3 laptop:px-8">
+      <h3
+        class="text-center text-xl laptop:text-2xl mt-3 laptop:mt-0 mb-3 text-themeText"
+      >
+        {{ item.title }}
+      </h3>
       <p class="text-base">{{ item.content }}</p>
     </div>
   </div>

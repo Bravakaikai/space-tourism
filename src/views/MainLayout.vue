@@ -3,15 +3,19 @@
     class="relative mx-auto w-11/12 bg-themeBg text-themeText border-4 border-double border-themeText rounded-xl"
   >
     <slot name="logo" />
-    <h1 class="text-center text-5xl mt-20 mb-6 text-themeText">
+    <h1
+      class="text-center text-3xl laptop:text-5xl mt-[60px] tablet::mt-[82.5px] laptop:mt-[95px] mb-6 text-themeText"
+    >
       Space Tourism
     </h1>
-    <slot name="toolBar" />
+    <tool-bar ref="toolbar" />
     <nav-bar :tab-list="tabList" @go-page="goPage" />
-    <div class="view mx-auto py-6 max-w-5xl flex flex-col justify-center">
+    <div
+      class="min-h-[calc(100vh-338px)] tablet:min-h-[calc(100vh-363px)] laptop:min-h-[calc(100vh-388px)] mx-auto py-6 max-w-6xl flex flex-col justify-center"
+    >
       <h2
         v-show="currTab !== 'Home'"
-        class="text-center mb-9 text-5xl text-themeText"
+        class="text-center mb-4 laptop:mb-9 text-3xl laptop:text-4xl text-themeText"
       >
         {{ currTab }}
       </h2>
@@ -22,10 +26,12 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import ToolBar from "@/components/ToolBar.vue";
 import NavBar from "@/components/NavBar.vue";
 export default {
   name: "MainLayout",
   components: {
+    "tool-bar": ToolBar,
     "nav-bar": NavBar,
   },
   computed: {
@@ -74,6 +80,10 @@ export default {
           (item) => item.route === this.$route.name
         )?.name;
         this.setCurrTab(tabName);
+
+        if (val === "/login") {
+          this.$refs.toolbar.openDialog("login-page", "Login");
+        }
       }
     },
   },
@@ -86,9 +96,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.view {
-  min-height: calc(100vh - 368px);
-}
-</style>

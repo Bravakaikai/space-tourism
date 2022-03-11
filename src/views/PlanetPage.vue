@@ -1,7 +1,7 @@
 <template>
-  <div class="grid grid-cols-3 md:grid-cols-4">
+  <div class="grid grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4">
     <div
-      class="planet hover:bg-hover p-6 text-center cursor-pointer"
+      class="planet hover:bg-hover p-4 tablet:p-5 laptop:p-6 text-center cursor-pointer"
       v-for="item in planetList"
       :key="item.id"
       @click="$router.push({ path: '/planets/' + item.id })"
@@ -11,8 +11,8 @@
         :src="require(`@/assets/image/planet/${item.img}`)"
         :alt="item.name"
       />
-      <h3 class="text-xl text-themeText">{{ item.name }}</h3>
-      <p>$ {{ item.price.toLocaleString() }}</p>
+      <h3 class="text-themeText text-xl laptop:text-2xl">{{ item.name }}</h3>
+      <p class="laptop:text-xl">$ {{ item.price.toLocaleString() }}</p>
     </div>
   </div>
   <pop-up-dialog
@@ -21,7 +21,7 @@
     @close="closeDetail"
   >
     <template v-slot>
-      <planet-detail />
+      <planet-detail @close="$refs.popUpDialog.close()" />
     </template>
   </pop-up-dialog>
 </template>
@@ -44,7 +44,6 @@ export default {
       return this.$route.params.id;
     },
   },
-
   data() {
     return {
       planetList: [
@@ -127,10 +126,10 @@ export default {
     routeParam(val) {
       if (val) this.openDetail(parseInt(val));
     },
-    mounted() {
-      const id = this.$route.params.id;
-      if (id) this.openDetail(parseInt(id));
-    },
+  },
+  mounted() {
+    const id = this.$route.params.id;
+    if (id) this.openDetail(parseInt(id));
   },
   methods: {
     ...mapMutations(["setCurrPlanet"]),

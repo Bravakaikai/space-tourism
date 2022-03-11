@@ -7,10 +7,10 @@
         @click.self="close"
       >
         <div
-          class="w-1/3 bg-white mx-auto rounded-md animate__animated animate__zoomIn"
+          class="w-3/4 tablet:w-1/2 laptop:w-1/4 bg-white mx-auto rounded-md animate__animated animate__zoomIn"
         >
           <header class="relative">
-            <h2 class="py-2 text-center text-3xl border-b">
+            <h2 class="py-2 text-center text-2xl laptop:text-3xl border-b">
               {{ title }}
             </h2>
             <button
@@ -21,7 +21,7 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
           </header>
-          <div class="p-4">
+          <div class="max-h-[calc(100vh-80px)] p-4 overflow-scroll">
             <slot />
           </div>
         </div>
