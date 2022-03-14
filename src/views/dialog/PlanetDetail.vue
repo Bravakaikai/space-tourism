@@ -9,11 +9,17 @@
       $ {{ planet?.price.toLocaleString() }}
     </p>
     <p>{{ planet?.content }}</p>
-    <base-button
-      :title="'Buy Now'"
-      class="block mx-auto mt-2 px-4 py-1"
-      @click="checkValid"
-    />
+    <a-popconfirm
+      placement="top"
+      ok-text="Login"
+      cancel-text="Cancel"
+      @confirm="checkValid"
+    >
+      <template v-slot:title>
+        <p>Please login and try again!</p>
+      </template>
+      <base-button :title="'Buy Now'" class="block mx-auto mt-2 px-4 py-1" />
+    </a-popconfirm>
   </div>
 </template>
 
@@ -34,7 +40,6 @@ export default {
   methods: {
     checkValid() {
       if (!this.userName) {
-        alert("Please login and try again!");
         this.$emit("close");
         this.$router.push({ path: "/login" });
       }

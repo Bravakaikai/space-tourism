@@ -61,7 +61,11 @@ export default {
     ...mapMutations(["setUserName"]),
     submit() {
       this.setUserName(this.form.name);
-      alert(`Hello, ${this.form.name}!`);
+      this.$notification.open({
+        message: `Hello, ${this.form.name}!`,
+        description: "Welcome to Space Tourism.",
+        placement: "topRight",
+      });
       this.form.name = null;
       this.form.password = null;
       this.$emit("close");

@@ -1,6 +1,6 @@
 <template>
   <div class="absolute top-5 right-4 tablet:top-8 tablet:right-8">
-    <p v-if="userName" class="text-2xl tablet:text-3xl text-right mb-0">
+    <p v-if="userName" class="textSize text-right mb-0">
       Hello, {{ userName }}!
     </p>
     <div class="flex justify-end">
@@ -13,7 +13,7 @@
       <a-tooltip v-else placement="bottom">
         <template v-slot:title> Log Out</template>
         <button class="hover:bg-transparent" @click="setUserName(null)">
-          <i class="fa-solid fa-right-to-bracket text-2xl tablet:text-3xl"></i>
+          <i class="fa-solid fa-right-to-bracket textSize"></i>
         </button>
       </a-tooltip>
       <a-tooltip placement="bottom">
@@ -23,7 +23,7 @@
           class="ml-3 tablet:ml-4 hover:bg-transparent"
           @click="openDialog('set-appearance', 'Appearance')"
         >
-          <i class="fa-solid fa-gear text-2xl tablet:text-3xl"></i>
+          <i class="fa-solid fa-gear textSize"></i>
         </button>
       </a-tooltip>
     </div>
@@ -79,3 +79,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.textSize {
+  @apply text-2xl tablet:text-3xl;
+}
+</style>

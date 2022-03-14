@@ -86,7 +86,7 @@ export default {
     }),
     formName: {
       get() {
-        if (!this.form.name && this.userName) return this.userName;
+        if (!this.form.name && this.userName) this.setUserName();
         return this.form.name;
       },
       set(val) {
@@ -95,11 +95,14 @@ export default {
     },
   },
   methods: {
+    setUserName() {
+      this.form.name = this.userName;
+    },
     submit() {
       this.form.name = null;
       this.form.email = null;
       this.form.message = null;
-      alert("Your response has been recorded.");
+      this.$message.success("Thank you! Your response has been recorded.", 3);
     },
   },
 };

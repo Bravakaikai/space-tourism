@@ -6,7 +6,7 @@
         :id="item.route"
         :key="item.route"
         :value="item.route"
-        :class="`tab w-1/4 p-2 laptop:py-4 tablet:text-xl border-2 border-transparent flex justify-center items-center flex-col laptop:flex-row hover:bg-hover ${
+        :class="`tab w-1/4 flex justify-center items-center flex-col ${
           currTab === item.name ? 'active' : ''
         }`"
         :style="{ '--font-color': item.color }"
@@ -38,6 +38,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.tab {
+  @apply border-2 border-transparent 
+  p-2 laptop:py-4 
+  tablet:text-xl 
+  laptop:flex-row 
+  hover:bg-hover;
+}
 .tab.active {
   color: var(--font-color);
   border-bottom: 2px solid var(--font-color);

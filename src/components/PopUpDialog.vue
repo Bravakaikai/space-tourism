@@ -7,7 +7,7 @@
         @click.self="close"
       >
         <div
-          class="w-3/4 tablet:w-1/2 laptop:w-1/4 bg-white mx-auto rounded-md animate__animated animate__zoomIn"
+          class="w-3/4 tablet:w-1/2 laptop:w-1/4 bg-white mx-auto rounded-md animate__animated animate__zoomIn animate__faster"
         >
           <header class="relative">
             <h2 class="py-2 text-center text-2xl laptop:text-3xl border-b">
@@ -21,7 +21,7 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
           </header>
-          <div class="max-h-[calc(100vh-80px)] p-4 overflow-scroll">
+          <div class="content p-4 max-h-[calc(100vh-80px)]">
             <slot />
           </div>
         </div>
@@ -49,10 +49,22 @@ export default {
     openDialog() {
       this.dialog = !this.dialog;
     },
-    close() {
+    close(e) {
+      if (e && e.currentTarget.className.includes("ant-input")) return;
       this.dialog = false;
       this.$emit("close");
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.content {
+  @apply overflow-auto;
+}
+@media (max-height: 500px) {
+  .content {
+    @apply overflow-scroll;
+  }
+}
+</style>

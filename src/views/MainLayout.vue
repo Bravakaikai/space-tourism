@@ -3,16 +3,12 @@
     class="relative mx-auto w-11/12 bg-themeBg text-themeText border-4 border-double border-themeText rounded-xl"
   >
     <slot name="logo" />
-    <h1
-      class="text-center text-3xl laptop:text-5xl mt-[60px] tablet::mt-[82.5px] laptop:mt-[95px] mb-6 text-themeText"
-    >
+    <h1 class="mb-6 text-center text-3xl laptop:text-5xl text-themeText title">
       Space Tourism
     </h1>
     <tool-bar ref="toolbar" />
     <nav-bar :tab-list="tabList" @go-page="goPage" />
-    <div
-      class="min-h-[calc(100vh-338px)] tablet:min-h-[calc(100vh-363px)] laptop:min-h-[calc(100vh-388px)] mx-auto py-6 max-w-6xl flex flex-col justify-center"
-    >
+    <div class="view mx-auto py-6 max-w-6xl flex flex-col justify-center">
       <h2
         v-show="currTab !== 'Home'"
         class="text-center mb-4 laptop:mb-9 text-3xl laptop:text-4xl text-themeText"
@@ -96,3 +92,11 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.title {
+  @apply mt-[60px] tablet:mt-[82.5px] laptop:mt-[95px];
+}
+.view {
+  @apply min-h-[calc(100vh-338px)] tablet:min-h-[calc(100vh-363px)] laptop:min-h-[calc(100vh-388px)];
+}
+</style>
