@@ -21,7 +21,7 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
           </header>
-          <div class="content p-4 max-h-[calc(100vh-80px)]">
+          <div class="overflow p-4 max-h-[calc(100vh-80px)]">
             <slot />
           </div>
         </div>
@@ -59,11 +59,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content {
-  @apply overflow-auto;
-}
 @media (max-height: 500px) {
-  .content {
+  .overflow {
     @apply overflow-scroll;
   }
 }
