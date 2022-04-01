@@ -1,4 +1,4 @@
-# Tailwind Training with Vue3
+# Tailwind with Vue3
 # Space Tourism
 
 ## Project setup
