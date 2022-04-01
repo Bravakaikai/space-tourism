@@ -1,5 +1,6 @@
-# Tailwind with Vue3
 # Space Tourism
+
+Tailwind with Vue3
 
 ## Project setup
 ```
