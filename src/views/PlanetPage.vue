@@ -4,7 +4,7 @@
       class="planet hover:bg-hover p-4 tablet:p-5 laptop:p-6 text-center cursor-pointer"
       v-for="item in planetList"
       :key="item.id"
-      @click="$router.push({ path: '/planets/' + item.id })"
+      @click="$router.push({ name: 'planets', params: { id: item.id } })"
     >
       <img
         class="mb-3 shadow-none scale-1 rounded-full transition delay-30 ease-in-out"
@@ -139,7 +139,7 @@ export default {
       this.setCurrPlanet(planet);
     },
     closeDetail() {
-      this.$router.push({ path: "/planets" });
+      this.$router.push({ name: "planets" });
     },
   },
 };

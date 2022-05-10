@@ -1,33 +1,34 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+const path = process.env.NODE_ENV === "production" ? "/space-tourism" : "";
 const routes = [
   {
-    path: "/",
+    path: path + "/",
     name: "home",
     component: () =>
       import(/* webpackChunkName: "home" */ "../views/HomePage.vue"),
   },
   {
-    path: "/about",
+    path: path + "/about",
     name: "aboutUs",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutPage.vue"),
   },
   {
-    path: "/planets/:id?",
+    path: path + "/planets/:id?",
     name: "planets",
     alias: "/login",
     component: () =>
       import(/* webpackChunkName: "planets" */ "../views/PlanetPage.vue"),
   },
   {
-    path: "/contact",
+    path: path + "/contact",
     name: "contactUs",
     component: () =>
       import(/* webpackChunkName: "contactUs" */ "../views/ContactPage.vue"),
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: path + "/:pathMatch(.*)*",
     name: "notFound",
     component: () =>
       import(/* webpackChunkName: "notFound" */ "../views/NotFound.vue"),

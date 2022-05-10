@@ -41,7 +41,9 @@ export default {
     checkValid() {
       if (!this.userName) {
         this.$emit("close");
-        this.$router.push({ path: "/login" });
+        const path =
+          process.env.NODE_ENV === "production" ? "/space-tourism" : "";
+        this.$router.push({ path: path + "/login" });
       }
     },
   },
